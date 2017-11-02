@@ -1,23 +1,20 @@
 import time
+import subprocess
+import psutil
 
-def something(duration=0.000001):
-    """
-    Function that needs some serious benchmarking.
-    """
-    time.sleep(duration)
-    # You may return anything you want, like the result of a computation
-    return 123
 
-def test_my_stuff(benchmark):
-    # benchmark something
-    result = benchmark(something)
+njobs=100
+ncpus=psutil.cpu_count()
 
-    # Extra code, to verify that the run completed correctly.
-    # Sometimes you may want to check the result, fast functions
-    # are no good if they return incorrect results :-)
-    assert result == 123
+def runR():
+    x = 100
+    y = 200
+    l = 80
+    runs = ' '.join(reversed(list(map(str,range(1,njobs+1)))))
+    cmd = 'parallel -j {0} bash /benchmarks/R-benchmark.sh {1} {2} {3} -- {4}'.format(ncpus,x,y,l,runs)
+    #return subprocess.call(['parallel','-j',str(ncpus),'/benchmarks/R-benchmark.sh','20','30','10','--']+runs,shell=True)
+    return subprocess.call([cmd],shell=True)
 
-def test_my_stuff_different_arg(benchmark):
-    # benchmark something, but add some arguments
-    result = benchmark(something, 0.001)
-    assert result == 123
+def testR(benchmark):
+    result = benchmark(runR)
+    assert result == 0

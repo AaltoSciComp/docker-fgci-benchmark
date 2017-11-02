@@ -1,10 +1,24 @@
 #Data generation
 
+require(optparse)
 require(GFA)
 
-xval <- 1000
-yval <- 1500
-learnstart <- 400
+options <- list(
+  make_option(c('-x','--xlength'),type='integer'),
+  make_option(c('-y','--ylength'),type='integer'),
+  make_option(c('-l','--learnstart'),type='integer'),
+  make_option(c('-s','--seed'),type='integer')
+  )
+
+parser = OptionParser(option_list=options)
+args=parse_args(parser)        
+
+xval <- args$x
+yval <- args$y
+learnstart <- args$l
+seed <- args$s
+
+set.seed(seed)
 
 X <- matrix(rnorm(xval*3),xval,3) #Latent variables
 W <- matrix(rnorm(yval*3),yval,3) #Projection matrix
@@ -15,7 +29,7 @@ Y <- list(Y[,1:learnstart], Y[,(learnstart+1):yval]) #Data grouping
 norm <- normalizeData(Y, type="center") #Centering
 opts <- getDefaultOpts() #Model options
 #Fast runs for the demo, default options recommended in general
-opts[c("iter.burnin", "iter.max")] <- c(500, 1000)
+opts[c("iter.burnin", "iter.max")] <- c(400, 1000)
 res <- gfa(norm$train, K=5, opts=opts) #Model inference
 rec <- reconstruction(res) #Reconstruction
 recOrig <- undoNormalizeData(rec, norm) #... to original space
