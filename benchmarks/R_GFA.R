@@ -33,4 +33,4 @@ opts[c("iter.burnin", "iter.max")] <- c(400, 1000)
 res <- gfa(norm$train, K=5, opts=opts) #Model inference
 rec <- reconstruction(res) #Reconstruction
 recOrig <- undoNormalizeData(rec, norm) #... to original space
-vis <- visualizeComponents(res, Y, norm) #Visualization
+#vis <- visualizeComponents(res, Y, norm) #Visualization
