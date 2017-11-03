@@ -1,0 +1,8 @@
+GROMACS_OpenMP_testA:
+  nsteps: 100
+GROMACS_MPI_testA:
+  nsteps: 100
+R_GFA:
+  xsize: 20
+  ysize: 30
+  njobs: 10
