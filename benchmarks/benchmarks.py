@@ -8,9 +8,9 @@ with open('/benchmarks/parameters.yml','r') as f:
 
 ncpus=psutil.cpu_count()
 
-def run_R_GFA(xsize,ysize,learnstart,njobs):
+def run_R_GFA(xsize,ysize,learnstart,nlearn,njobs):
     runstring = ' '.join(list(map(str,range(1,njobs+1))))
-    cmd = 'parallel -j {0} R --vanilla --slave -f /benchmarks/R_GFA.R --args -x {1} -y {2} -l {3} -s -- {4}'.format(ncpus,xsize,ysize,learnstart,runstring)
+    cmd = 'parallel -j {0} R --vanilla --slave -f /benchmarks/R_GFA.R --args -x {1} -y {2} -l {3} -n {4} -s -- {5}'.format(ncpus,xsize,ysize,learnstart,nlearn,runstring)
     return subprocess.call([cmd],shell=True)
 
 
@@ -29,8 +29,9 @@ def test_R_GFA(benchmark):
     ysize=parameters['R_GFA']['ysize']
     learnstart = ysize/3
     njobs = parameters['R_GFA']['njobs']
+    nlearn = parameters['R_GFA']['nlearn'] 
     
-    result = benchmark.pedantic(run_R_GFA,args=(xsize,ysize,learnstart,njobs),rounds=parameters['R_GFA']['rounds'])
+    result = benchmark.pedantic(run_R_GFA,args=(xsize,ysize,learnstart,nlearn,njobs),rounds=parameters['R_GFA']['rounds'])
     assert result == 0
 
 def test_GROMACS_MPI_testA(benchmark):

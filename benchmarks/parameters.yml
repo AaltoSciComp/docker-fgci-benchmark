@@ -1,11 +1,12 @@
 GROMACS_OpenMP_testA:
-  nsteps: 1000
+  nsteps: 10000
   rounds: 3
 GROMACS_MPI_testA:
-  nsteps: 1000
+  nsteps: 10000
   rounds: 3
 R_GFA:
-  xsize: 100
-  ysize: 200
+  xsize: 5000
+  ysize: 5000
   njobs: 100
-  rounds: 5
+  nlearn: 5000
+  rounds: 3

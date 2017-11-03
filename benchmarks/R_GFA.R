@@ -7,7 +7,8 @@ options <- list(
   make_option(c('-x','--xlength'),type='integer'),
   make_option(c('-y','--ylength'),type='integer'),
   make_option(c('-l','--learnstart'),type='integer'),
-  make_option(c('-s','--seed'),type='integer')
+  make_option(c('-s','--seed'),type='integer'),
+  make_option(c('-n','--nlearn'),type='integer')
   )
 
 parser = OptionParser(option_list=options)
@@ -17,6 +18,7 @@ xval <- args$x
 yval <- args$y
 learnstart <- args$l
 seed <- args$s
+nlearn <- args$n
 
 set.seed(seed)
 
@@ -29,7 +31,7 @@ Y <- list(Y[,1:learnstart], Y[,(learnstart+1):yval]) #Data grouping
 norm <- normalizeData(Y, type="center") #Centering
 opts <- getDefaultOpts() #Model options
 #Fast runs for the demo, default options recommended in general
-opts[c("iter.burnin", "iter.max")] <- c(400, 1000)
+opts[c("iter.burnin", "iter.max")] <- c(as.integer(0.4*nlearn), as.integer(nlearn))
 res <- gfa(norm$train, K=5, opts=opts) #Model inference
 rec <- reconstruction(res) #Reconstruction
 recOrig <- undoNormalizeData(rec, norm) #... to original space
