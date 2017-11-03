@@ -1,11 +1,6 @@
 # Start from Debian image
 FROM debian:latest
 
-# Install requirements for R benchmark
-RUN apt-get update && apt-get install -y \
-  r-base \
-  && rm -rf /var/lib/apt/lists/*
-
 # Install requirements for GROMACS benchmark
 RUN apt-get update && apt-get install -y \
   openssh-client \
@@ -15,24 +10,8 @@ RUN apt-get update && apt-get install -y \
   cmake \
   wget \
   curl \
+  build-essential \
   && rm -rf /var/lib/apt/lists/*
-
-# Install requirements for Python benchmark suite
-RUN apt-get update && apt-get install -y \
-  python3-pip \
-  python3-yaml \
-  moreutils \
-  && rm -rf /var/lib/apt/lists/*
-
-# Install packages used for R benchmark
-COPY install_scripts /tmp/install_scripts
-RUN R CMD BATCH /tmp/install_scripts/install_rpackages.R
-
-# Install packages for Python benchmark suite
-RUN pip3 install -U \
-  psutil \
-  pytest \
-  pytest-benchmark
 
 # Compile and install GROMACS
 RUN cd /tmp && \
@@ -69,12 +48,39 @@ RUN mkdir /benchmarks/gromacs-datas && \
   tar xzf GROMACS_TestCaseA.tar.gz && \
   cp ion_channel.tpr /benchmarks/gromacs-datas
   
+# Install requirements for R benchmark
+RUN apt-get update && apt-get install -y \
+  r-base \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install packages used for R benchmark
+COPY install_scripts /tmp/install_scripts
+RUN R CMD BATCH /tmp/install_scripts/install_rpackages.R
+
+# Install requirements for Python benchmark suite
+RUN apt-get update && apt-get install -y \
+  python3-pip \
+  python3-yaml \
+  moreutils \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install packages for Python benchmark suite
+RUN pip3 install -U \
+  psutil \
+  pytest \
+  pygal \
+  pygal.js \
+  pytest-benchmark
+
 # Copy benchmark scripts
 COPY benchmarks/benchmarks.py /benchmarks
 COPY benchmarks/R_GFA.R /benchmarks
 
-# chown /benchmarks for a new user with uid 1001
-RUN chown 1001:1001 /benchmarks
+# Set result folder
+RUN mkdir /results
+
+# chown /benchmarks and results for a new user with uid 1001
+RUN chown 1001:1001 /benchmarks /results
 
 # Create user benchmark with uid 1001 (MPI is risky to run as root)
 RUN adduser --home /benchmarks --uid 1001 --shell /bin/bash --disabled-password --gecos '' benchmark
@@ -84,8 +90,12 @@ USER benchmark
 WORKDIR /benchmarks
 
 # Sed default command to run
-CMD cd /benchmarks && \
-  pytest benchmarks.py
+CMD savename=$(hostname)-$(date "+%0d-%0m-%Y_%H-%M-%S") && \
+  pytest benchmarks.py --benchmark-storage=/results \
+  --benchmark-save=$savename \
+  --benchmark-histogram=/results/histograms/$savename \
+  --benchmark-compare=/benchmarks/reference.json
 
-# Copy parameters
+# Copy parameters and reference
 COPY benchmarks/parameters.yml /benchmarks
+COPY benchmarks/reference.json /benchmarks

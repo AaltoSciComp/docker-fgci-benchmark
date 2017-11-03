@@ -6,3 +6,4 @@ R_GFA:
   xsize: 20
   ysize: 30
   njobs: 10
+  rounds: 2
