@@ -1,139 +1,139 @@
 {
-    "datetime": "2017-11-03T12:59:10.146697",
-    "version": "3.1.1",
     "commit_info": {
-        "branch": "(unknown)",
-        "project": "benchmarks",
-        "time": null,
-        "id": "unversioned",
+        "project": "results",
+        "dirty": false,
         "author_time": null,
-        "dirty": false
+        "id": "unversioned",
+        "branch": "(unknown)",
+        "time": null
     },
+    "benchmarks": [
+        {
+            "group": null,
+            "params": null,
+            "stats": {
+                "q3": 11.948849069536664,
+                "min": 11.698051232844591,
+                "q1": 11.73418662394397,
+                "median": 11.78351980401203,
+                "iqr": 0.21466244559269398,
+                "mean": 11.877307941019534,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "max": 12.34040723182261,
+                "total": 59.386539705097675,
+                "iqr_outliers": 1,
+                "ld15iqr": 11.698051232844591,
+                "iterations": 1,
+                "stddev": 0.262702082670561,
+                "ops": 0.0841941629337061,
+                "hd15iqr": 12.34040723182261,
+                "rounds": 5
+            },
+            "options": {
+                "disable_gc": false,
+                "warmup": false,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "timer": "perf_counter",
+                "min_rounds": 5
+            },
+            "extra_info": {},
+            "name": "test_R_GFA",
+            "fullname": "benchmarks.py::test_R_GFA",
+            "param": null
+        },
+        {
+            "group": null,
+            "params": null,
+            "stats": {
+                "q3": 9.068243778543547,
+                "min": 8.6410212200135,
+                "q1": 8.66511313081719,
+                "median": 8.737388863228261,
+                "iqr": 0.403130647726357,
+                "mean": 8.852312944519023,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "max": 9.178528750315309,
+                "total": 26.55693883355707,
+                "iqr_outliers": 0,
+                "ld15iqr": 8.6410212200135,
+                "iterations": 1,
+                "stddev": 0.28659072669607055,
+                "ops": 0.11296482696300944,
+                "hd15iqr": 9.178528750315309,
+                "rounds": 3
+            },
+            "options": {
+                "disable_gc": false,
+                "warmup": false,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "timer": "perf_counter",
+                "min_rounds": 5
+            },
+            "extra_info": {},
+            "name": "test_GROMACS_MPI_testA",
+            "fullname": "benchmarks.py::test_GROMACS_MPI_testA",
+            "param": null
+        },
+        {
+            "group": null,
+            "params": null,
+            "stats": {
+                "q3": 1.452580026583746,
+                "min": 1.442624421324581,
+                "q1": 1.445068464265205,
+                "median": 1.4524005930870771,
+                "iqr": 0.0075115623185411096,
+                "mean": 1.4492216173869867,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "max": 1.4526398377493024,
+                "total": 4.34766485216096,
+                "iqr_outliers": 0,
+                "ld15iqr": 1.442624421324581,
+                "iterations": 1,
+                "stddev": 0.005714591535400303,
+                "ops": 0.6900255889109949,
+                "hd15iqr": 1.4526398377493024,
+                "rounds": 3
+            },
+            "options": {
+                "disable_gc": false,
+                "warmup": false,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "timer": "perf_counter",
+                "min_rounds": 5
+            },
+            "extra_info": {},
+            "name": "test_GROMACS_OpenMP_testA",
+            "fullname": "benchmarks.py::test_GROMACS_OpenMP_testA",
+            "param": null
+        }
+    ],
     "machine_info": {
-        "machine": "x86_64",
-        "release": "4.4.0-97-generic",
         "python_compiler": "GCC 6.3.0 20170118",
-        "processor": "",
-        "python_version": "3.5.3",
+        "python_implementation_version": "3.5.3",
+        "cpu": {
+            "brand": "Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz",
+            "vendor_id": "GenuineIntel",
+            "hardware": "unknown"
+        },
+        "system": "Linux",
         "python_build": [
             "default",
             "Jan 19 2017 14:11:04"
         ],
-        "python_implementation_version": "3.5.3",
-        "system": "Linux",
-        "node": "nickel-benchmark",
+        "machine": "x86_64",
+        "processor": "",
+        "node": "pe2.int.triton.aalto.fi",
+        "release": "3.10.0-693.2.2.el7.x86_64",
         "python_implementation": "CPython",
-        "cpu": {
-            "vendor_id": "GenuineIntel",
-            "hardware": "unknown",
-            "brand": "Intel(R) Core(TM) i5-3427U CPU @ 1.80GHz"
-        }
+        "python_version": "3.5.3"
     },
-    "benchmarks": [
-        {
-            "stats": {
-                "q1": 5.8906203389997245,
-                "stddev": 0.018438065293722078,
-                "ld15iqr": 5.8906203389997245,
-                "min": 5.8906203389997245,
-                "q3": 5.916695701002027,
-                "total": 11.807316040001751,
-                "hd15iqr": 5.916695701002027,
-                "median": 5.903658020000876,
-                "outliers": "0;0",
-                "stddev_outliers": 0,
-                "iqr_outliers": 0,
-                "mean": 5.903658020000876,
-                "rounds": 2,
-                "max": 5.916695701002027,
-                "iterations": 1,
-                "iqr": 0.026075362002302427,
-                "ops": 0.16938650521627804
-            },
-            "options": {
-                "disable_gc": false,
-                "max_time": 1.0,
-                "min_rounds": 5,
-                "warmup": false,
-                "min_time": 5e-06,
-                "timer": "perf_counter"
-            },
-            "name": "test_R_GFA",
-            "extra_info": {},
-            "group": null,
-            "param": null,
-            "params": null,
-            "fullname": "benchmarks.py::test_R_GFA"
-        },
-        {
-            "stats": {
-                "q1": 16.695674759997928,
-                "stddev": 0,
-                "ld15iqr": 16.695674759997928,
-                "min": 16.695674759997928,
-                "q3": 16.695674759997928,
-                "total": 16.695674759997928,
-                "hd15iqr": 16.695674759997928,
-                "median": 16.695674759997928,
-                "outliers": "0;0",
-                "stddev_outliers": 0,
-                "iqr_outliers": 0,
-                "mean": 16.695674759997928,
-                "rounds": 1,
-                "max": 16.695674759997928,
-                "iterations": 1,
-                "iqr": 0.0,
-                "ops": 0.059895752305618354
-            },
-            "options": {
-                "disable_gc": false,
-                "max_time": 1.0,
-                "min_rounds": 5,
-                "warmup": false,
-                "min_time": 5e-06,
-                "timer": "perf_counter"
-            },
-            "name": "test_GROMACS_MPI_testA",
-            "extra_info": {},
-            "group": null,
-            "param": null,
-            "params": null,
-            "fullname": "benchmarks.py::test_GROMACS_MPI_testA"
-        },
-        {
-            "stats": {
-                "q1": 17.694523375001154,
-                "stddev": 0,
-                "ld15iqr": 17.694523375001154,
-                "min": 17.694523375001154,
-                "q3": 17.694523375001154,
-                "total": 17.694523375001154,
-                "hd15iqr": 17.694523375001154,
-                "median": 17.694523375001154,
-                "outliers": "0;0",
-                "stddev_outliers": 0,
-                "iqr_outliers": 0,
-                "mean": 17.694523375001154,
-                "rounds": 1,
-                "max": 17.694523375001154,
-                "iterations": 1,
-                "iqr": 0.0,
-                "ops": 0.056514661559790944
-            },
-            "options": {
-                "disable_gc": false,
-                "max_time": 1.0,
-                "min_rounds": 5,
-                "warmup": false,
-                "min_time": 5e-06,
-                "timer": "perf_counter"
-            },
-            "name": "test_GROMACS_OpenMP_testA",
-            "extra_info": {},
-            "group": null,
-            "param": null,
-            "params": null,
-            "fullname": "benchmarks.py::test_GROMACS_OpenMP_testA"
-        }
-    ]
+    "version": "3.1.1",
+    "datetime": "2017-11-03T15:25:39.122896"
 }
