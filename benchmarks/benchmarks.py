@@ -3,7 +3,7 @@ import subprocess
 import psutil
 from yaml import load
 
-with open('/benchmarks/parameters.yml','r') as f:
+with open('/results/parameters.yml','r') as f:
     parameters = load(f.read())
 
 ncpus=psutil.cpu_count()

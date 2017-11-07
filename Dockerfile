@@ -92,11 +92,13 @@ WORKDIR /benchmarks
 # Sed default command to run
 CMD savename=$(hostname)-$(date "+%0d-%0m-%Y_%H-%M-%S") && \
   cd /results && \
+  if [ ! -e parameters.yml ] ; then \
+  wget https://raw.githubusercontent.com/AaltoScienceIT/docker-fgci-benchmark/master/benchmarks/parameters.yml ; \
+  fi && \
+  if [ ! -e reference.json ] ; then \
+  wget https://raw.githubusercontent.com/AaltoScienceIT/docker-fgci-benchmark/master/benchmarks/reference.json ; \
+  fi && \
   pytest /benchmarks/benchmarks.py --benchmark-storage=/results \
   --benchmark-save=$savename \
   --benchmark-histogram=/results/histograms/$savename \
-  --benchmark-compare=/benchmarks/reference.json
-
-# Copy parameters and reference
-COPY benchmarks/parameters.yml /benchmarks
-COPY benchmarks/reference.json /benchmarks
+  --benchmark-compare=/results/reference.json
