@@ -7,6 +7,6 @@ GROMACS_MPI_testA:
 R_GFA:
   xsize: 5000
   ysize: 5000
-  njobs: 100
-  nlearn: 5000
+  njobs: 200
+  nlearn: 1000
   rounds: 3
