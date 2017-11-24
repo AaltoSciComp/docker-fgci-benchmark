@@ -89,6 +89,8 @@ RUN adduser --home /benchmarks --uid 1001 --shell /bin/bash --disabled-password 
 USER benchmark
 WORKDIR /benchmarks
 
+RUN ln -s /tmp /benchmarks/.cache
+
 # Copy entrypoint script
 COPY ./entry.sh /entry.sh
 ENTRYPOINT ["/entry.sh"]

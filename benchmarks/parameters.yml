@@ -9,4 +9,4 @@ R_GFA:
   ysize: 1000
   njobs: 200
   nlearn: 1000
-  rounds: 3
+  rounds: 2
