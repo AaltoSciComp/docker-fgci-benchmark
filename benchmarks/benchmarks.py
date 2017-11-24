@@ -21,7 +21,7 @@ def run_GROMACS_MPI_testA():
 
 def run_GROMACS_OpenMP_testA():
     nsteps = parameters['GROMACS_OpenMP_testA']['nsteps']
-    cmd = 'mpirun -np 1 /benchmarks/gromacs/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {0} -g $(tempfile) -e $(tempfile)'.format(nsteps)
+    cmd = 'mpirun -np {0} /benchmarks/gromacs/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {1} -g $(tempfile) -e $(tempfile)'.format(ncpus/2,nsteps)
     return subprocess.call([cmd],shell=True)
 
 def test_R_GFA(benchmark):
