@@ -14,32 +14,8 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Compile and install GROMACS
-RUN cd /tmp && \
-  wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-5.1.4.tar.gz && \
-  tar xzf gromacs-5.1.4.tar.gz && \
-  cd gromacs-5.1.4 && \
-  mkdir build && \
-  cd build && \
-  cmake \
-          -DCMAKE_INSTALL_PREFIX=/benchmarks/gromacs/ \
-          -DBUILD_SHARED_LIBS=off \
-          -DBUILD_TESTING=off \
-          -DREGRESSIONTEST_DOWNLOAD=OFF \
-          -DCMAKE_C_COMPILER=`which mpicc` \
-          -DCMAKE_CXX_COMPILER=`which mpicxx` \
-          -DGMX_BUILD_OWN_FFTW=on \
-          -DGMX_SIMD=AVX_256 \
-          -DGMX_DOUBLE=off \
-          -DGMX_EXTERNAL_BLAS=off \
-          -DGMX_EXTERNAL_LAPACK=off \
-          -DGMX_FFT_LIBRARY=fftw3 \
-          -DGMX_GPU=off \
-          -DGMX_MPI=on \
-          -DGMX_OPENMP=on \
-          -DGMX_X11=off \
-          .. && \
-  make -j 4 && \
-  make install
+COPY install_scripts /tmp/install_scripts
+RUN bash /tmp/install_scripts/install_gromacs.sh
 
 # Download GROMACS test data
 RUN mkdir /benchmarks/gromacs-datas && \
@@ -70,6 +46,7 @@ RUN pip3 install -U \
   pytest \
   pygal \
   pygal.js \
+  py-cpuinfo \
   pytest-benchmark
 
 # Copy benchmark scripts
