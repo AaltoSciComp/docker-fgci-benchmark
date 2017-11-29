@@ -10,12 +10,14 @@ with open('/results/parameters.yml','r') as f:
 ncpus=psutil.cpu_count()
 cpu_info    = cpuinfo.get_cpu_info()
 cpu_flags   = cpu_info['flags']
-if 'avx' in cpu_flags:
-    gromacs_version = 'avx256'
+if 'avx2' in cpu_flags:
+    gromacs_version = 'AVX2_256'
+elif 'avx' in cpu_flags:
+    gromacs_version = 'AVX_256'
 elif 'sse4.1' in cpu_flags:
-    gromacs_version = 'sse4.1'
+    gromacs_version = 'SSE4.1'
 else:
-    gromacs_version = 'sse2'
+    gromacs_version = 'SSE2'
 
 def run_R_GFA(xsize,ysize,learnstart,nlearn,njobs):
     runstring = ' '.join(list(map(str,range(1,njobs+1))))
