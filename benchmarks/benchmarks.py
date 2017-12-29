@@ -7,12 +7,13 @@ import psutil
 with open('/results/parameters.yml','r') as f:
     parameters = load(f.read())
 
-ncpus=psutil.cpu_count()
+if 'ncpus' in parameters:
+    ncpus = int(parameters['ncpus'])
+else:
+    ncpus=psutil.cpu_count()
 cpu_info    = cpuinfo.get_cpu_info()
 cpu_flags   = cpu_info['flags']
-if 'avx2' in cpu_flags:
-    gromacs_version = 'AVX2_256'
-elif 'avx' in cpu_flags:
+if 'avx' in cpu_flags:
     gromacs_version = 'AVX_256'
 elif 'sse4.1' in cpu_flags:
     gromacs_version = 'SSE4.1'
