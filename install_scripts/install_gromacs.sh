@@ -119,3 +119,6 @@ cmake \
         .. && \
 make -j 4 && \
 make install
+
+cd /tmp && \
+rm -rf gromacs-5.1.4 gromacs-5.1.4.tar.gz
