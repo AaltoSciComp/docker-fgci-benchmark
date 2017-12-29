@@ -28,12 +28,12 @@ def run_R_GFA(xsize,ysize,learnstart,nlearn,njobs):
 
 def run_GROMACS_MPI_testA():
     nsteps = parameters['GROMACS_MPI_testA']['nsteps']
-    cmd = 'mpirun -np {0} /benchmarks/gromacs-{1}/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {2} -g $(tempfile) -e $(tempfile)'.format(int(ncpus),gromacs_version,nsteps)
+    cmd = 'OMP_NUM_THREADS={0} mpirun -np {1} /benchmarks/gromacs-{2}/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {3} -g $(tempfile) -e $(tempfile)'.format(1,int(ncpus),gromacs_version,nsteps)
     return subprocess.call([cmd],shell=True)
 
 def run_GROMACS_OpenMP_testA():
     nsteps = parameters['GROMACS_OpenMP_testA']['nsteps']
-    cmd = 'mpirun -np {0} /benchmarks/gromacs-{1}/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {2} -g $(tempfile) -e $(tempfile)'.format(int(ncpus/2),gromacs_version,nsteps)
+    cmd = 'OMP_NUM_THREADS={0} mpirun -np {1} /benchmarks/gromacs-{2}/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {3} -g $(tempfile) -e $(tempfile)'.format(int(ncpus/2),2,gromacs_version,nsteps)
     return subprocess.call([cmd],shell=True)
 
 def test_R_GFA(benchmark):
@@ -42,7 +42,6 @@ def test_R_GFA(benchmark):
     learnstart = ysize/3
     njobs = parameters['R_GFA']['njobs']
     nlearn = parameters['R_GFA']['nlearn'] 
-    
     result = benchmark.pedantic(run_R_GFA,args=(xsize,ysize,learnstart,nlearn,njobs),rounds=parameters['R_GFA']['rounds'])
     assert result == 0
 
