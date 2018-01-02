@@ -54,8 +54,15 @@ RUN pip3 install -U \
 
 # Install CP2K
 RUN apt-get update && apt-get install -y \
-  cp2k
+  cp2k \
   && rm -rf /var/lib/apt/lists/*
+
+# Download CP2K test data
+RUN mkdir /benchmarks/cp2k-datas && \
+  cd /benchmarks/cp2k-datas && \
+  wget -O /tmp/CP2K_TestCaseA.tar.gz http://www.prace-ri.eu/UEABS/CP2K/CP2K_TestCaseA.tar.gz && \
+  tar xzf /tmp/CP2K_TestCaseA.tar.gz && \
+  rm /tmp/CP2K_TestCaseA.tar.gz
 
 # Copy benchmark scripts
 COPY benchmarks/benchmarks.py /benchmarks
