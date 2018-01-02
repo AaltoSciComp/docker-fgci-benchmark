@@ -13,8 +13,11 @@ RUN apt-get update && apt-get install -y \
   build-essential \
   && rm -rf /var/lib/apt/lists/*
 
+# Make install scripts folder
+RUN mkdir /tmp/install_scripts
+
 # Compile and install GROMACS
-COPY install_scripts /tmp/install_scripts
+COPY install_scripts/install_gromacs.sh /tmp/install_scripts
 RUN bash /tmp/install_scripts/install_gromacs.sh
 
 # Download GROMACS test data
@@ -30,7 +33,7 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Install packages used for R benchmark
-COPY install_scripts /tmp/install_scripts
+COPY install_scripts/install_rpackages.R /tmp/install_scripts
 RUN R CMD BATCH /tmp/install_scripts/install_rpackages.R
 
 # Install requirements for Python benchmark suite
@@ -48,6 +51,11 @@ RUN pip3 install -U \
   pygal.js \
   py-cpuinfo \
   pytest-benchmark
+
+# Install CP2K
+RUN apt-get update && apt-get install -y \
+  cp2k
+  && rm -rf /var/lib/apt/lists/*
 
 # Copy benchmark scripts
 COPY benchmarks/benchmarks.py /benchmarks
