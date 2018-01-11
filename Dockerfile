@@ -64,6 +64,11 @@ RUN mkdir /benchmarks/cp2k-datas && \
   tar xzf /tmp/CP2K_TestCaseA.tar.gz && \
   rm /tmp/CP2K_TestCaseA.tar.gz
 
+# Install hardinfo for HW information
+RUN apt-get update && apt-get install -y \
+  hardinfo \
+  && rm -rf /var/lib/apt/lists/*
+
 # Copy benchmark scripts
 COPY benchmarks/benchmarks.py /benchmarks
 COPY benchmarks/R_GFA.R /benchmarks
