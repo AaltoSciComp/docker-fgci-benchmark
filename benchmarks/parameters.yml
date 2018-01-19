@@ -10,3 +10,5 @@ R_GFA:
   njobs: 120
   nlearn: 1000
   rounds: 2
+CP2K_MPI_testA:
+  rounds: 1
