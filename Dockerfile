@@ -55,6 +55,7 @@ RUN pip3 install -U \
 # Install CP2K
 RUN apt-get update && apt-get install -y \
   cp2k \
+  cp2k-data \
   && rm -rf /var/lib/apt/lists/*
 
 # Download CP2K test data
