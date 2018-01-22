@@ -53,10 +53,11 @@ RUN pip3 install -U \
   pytest-benchmark
 
 # Install CP2K
-RUN apt-get update && apt-get install -y \
-  cp2k \
-  cp2k-data \
-  && rm -rf /var/lib/apt/lists/*
+RUN mkdir /benchmarks/cp2k && \ 
+  cd /benchmarks/cp2k && \
+  wget https://downloads.sourceforge.net/project/cp2k/precompiled/cp2k-3.0-Linux-x86_64.ssmp && \
+  chmod +x cp2k-3.0-Linux-x86_64.ssmp && \
+  ln -s /benchmarks/cp2k/cp2k-3.0-Linux-x86_64.ssmp /usr/local/bin/cp2k
 
 # Download CP2K test data
 RUN mkdir /benchmarks/cp2k-datas && \
