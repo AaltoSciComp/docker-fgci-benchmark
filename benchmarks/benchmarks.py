@@ -33,7 +33,7 @@ def run_GROMACS_MPI_testA():
     nsteps = parameters['GROMACS_MPI_testA']['nsteps']
     cmd = 'OMP_NUM_THREADS={0} mpirun -np {1} /benchmarks/gromacs-{2}/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {3} -g /results/gromacs-mpi-testA.log -e /results/gromacs-mpi-testA.edr'.format(1,int(ncpus),gromacs_version,nsteps)
     return subprocess.call([cmd],shell=True)
-"""
+
 def test_R_GFA(benchmark):
     xsize=parameters['R_GFA']['xsize']
     ysize=parameters['R_GFA']['ysize']
@@ -42,12 +42,11 @@ def test_R_GFA(benchmark):
     nlearn = parameters['R_GFA']['nlearn'] 
     result = benchmark.pedantic(run_R_GFA,args=(xsize,ysize,learnstart,nlearn,njobs),rounds=parameters['R_GFA']['rounds'])
     assert result == 0
-"""
+
 def test_CP2K_MPI_testA(benchmark):
     result = benchmark.pedantic(run_CP2K_MPI_testA,rounds=parameters['CP2K_MPI_testA'].get('rounds',1))
     assert result == 0
-"""
+
 def test_GROMACS_MPI_testA(benchmark):
     result = benchmark.pedantic(run_GROMACS_MPI_testA,rounds=parameters['GROMACS_MPI_testA'].get('rounds',1))
     assert result == 0
-"""
