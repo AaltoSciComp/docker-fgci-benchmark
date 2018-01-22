@@ -14,13 +14,6 @@ if [[ "$#" -eq 0 ]] ; then
     wget https://raw.githubusercontent.com/AaltoScienceIT/docker-fgci-benchmark/master/benchmarks/reference.json 
   fi
 
-  mkdir -p /tmp/cp2k-datas
-  cd /tmp/cp2k-datas
-  wget -O /tmp/cp2k-datas/CP2K_TestCaseA.tar.gz http://www.prace-ri.eu/UEABS/CP2K/CP2K_TestCaseA.tar.gz
-  tar xzf /tmp/cp2k-datas/CP2K_TestCaseA.tar.gz
-  rm /tmp/cp2k-datas/CP2K_TestCaseA.tar.gz
-  cd /results
-
   # Run device diagnostics
   hardinfo -r 1> ${savename}-hardinfo.txt 2> /dev/null
 

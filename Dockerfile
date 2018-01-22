@@ -52,10 +52,19 @@ RUN pip3 install -U \
   py-cpuinfo \
   pytest-benchmark
 
-# Install CP2K
+# Install CP2K dependencies
 RUN apt-get update && apt-get install -y \
-  cp2k \
-  cp2k-data \
+  git \
+  python \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install CP2K
+COPY install_scripts/install_cp2k.sh /tmp/install_scripts
+RUN bash /tmp/install_scripts/install_cp2k.sh
+
+# Install CP2K dependencies
+RUN apt-get update && apt-get install -y \
+  environment-modules \
   && rm -rf /var/lib/apt/lists/*
 
 # Download CP2K test data
@@ -68,11 +77,15 @@ RUN mkdir /benchmarks/cp2k-datas && \
 # Install hardinfo for HW information
 RUN apt-get update && apt-get install -y \
   hardinfo \
+  vim \
+  less \
   && rm -rf /var/lib/apt/lists/*
 
 # Copy benchmark scripts
 COPY benchmarks/benchmarks.py /benchmarks
 COPY benchmarks/R_GFA.R /benchmarks
+COPY benchmarks/run_cp2k.sh /benchmarks
+RUN chmod +x /benchmarks/run_cp2k.sh
 
 # Set result folder
 RUN mkdir /results

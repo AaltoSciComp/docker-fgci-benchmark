@@ -26,8 +26,8 @@ def run_R_GFA(xsize,ysize,learnstart,nlearn,njobs):
     return subprocess.call([cmd],shell=True)
 
 def run_CP2K_MPI_testA():
-    cmd = 'OMP_NUM_THREADS={0} mpirun -np {1} cp2k -i /tmp/cp2k-datas/H2O-1024.inp -o /results/cp2k-mpi-testA.out'.format(1,int(ncpus))
-    return subprocess.call([cmd],shell=True,cwd='/tmp/cp2k-datas')
+    cmd = '/benchmarks/run_cp2k.sh {0} {1}'.format(1,int(ncpus))
+    return subprocess.call([cmd],shell=True)
 
 def run_GROMACS_MPI_testA():
     nsteps = parameters['GROMACS_MPI_testA']['nsteps']

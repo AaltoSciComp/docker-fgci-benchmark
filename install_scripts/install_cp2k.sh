@@ -8,4 +8,6 @@ git clone https://github.com/spack/spack.git spack
 
 . spack/share/spack/setup-env.sh
 
-spack install cp2k
+export SPACK_TARGET_TYPE="x86_64_avx"
+
+spack install cp2k@4.1 smm=none
