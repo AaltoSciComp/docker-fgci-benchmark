@@ -23,6 +23,7 @@ if [[ "$#" -eq 0 ]] ; then
     --benchmark-save=$savename \
     --benchmark-histogram=/results/histograms/$savename \
     --benchmark-compare=/results/reference.json \
+    --benchmark-min-rounds=1 \
     --benchmark-disable-gc
 fi
 
