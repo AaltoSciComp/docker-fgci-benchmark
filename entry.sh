@@ -22,7 +22,8 @@ if [[ "$#" -eq 0 ]] ; then
   pytest /benchmarks/benchmarks.py --benchmark-storage=/results \
     --benchmark-save=$savename \
     --benchmark-histogram=/results/histograms/$savename \
-    --benchmark-compare=/results/reference.json
+    --benchmark-compare=/results/reference.json \
+    --benchmark-disable-gc
 fi
 
 exec "$@"
