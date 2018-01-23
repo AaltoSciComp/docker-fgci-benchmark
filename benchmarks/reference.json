@@ -1,139 +1,139 @@
 {
     "machine_info": {
-        "machine": "x86_64",
-        "release": "3.10.0-693.5.2.el7.x86_64",
-        "python_implementation": "CPython",
-        "system": "Linux",
+        "release": "3.10.0-693.11.6.el7.x86_64",
         "python_implementation_version": "3.5.3",
+        "python_version": "3.5.3",
         "python_compiler": "GCC 6.3.0 20170118",
         "cpu": {
+            "brand": "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
             "vendor_id": "GenuineIntel",
-            "brand": "Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz",
             "hardware": "unknown"
         },
-        "node": "pe10",
-        "python_version": "3.5.3",
-        "processor": "",
+        "machine": "x86_64",
         "python_build": [
             "default",
             "Jan 19 2017 14:11:04"
-        ]
+        ],
+        "processor": "",
+        "python_implementation": "CPython",
+        "node": "pe84.int.triton.aalto.fi",
+        "system": "Linux"
     },
-    "datetime": "2017-11-24T17:03:41.359726",
     "benchmarks": [
         {
-            "stats": {
-                "q1": 266.302595596062,
-                "ops": 0.0037457735851325336,
-                "stddev": 0.940388715287509,
-                "min": 266.302595596062,
-                "outliers": "0;0",
-                "iterations": 1,
-                "stddev_outliers": 0,
-                "iqr_outliers": 0,
-                "total": 533.9351016671862,
-                "rounds": 2,
-                "hd15iqr": 267.6325060711242,
-                "iqr": 1.3299104750622064,
-                "max": 267.6325060711242,
-                "q3": 267.6325060711242,
-                "median": 266.9675508335931,
-                "ld15iqr": 266.302595596062,
-                "mean": 266.9675508335931
+            "options": {
+                "warmup": false,
+                "disable_gc": true,
+                "min_rounds": 1,
+                "timer": "perf_counter",
+                "max_time": 1.0,
+                "min_time": 5e-06
             },
+            "extra_info": {},
+            "group": null,
             "fullname": "benchmarks.py::test_R_GFA",
-            "group": null,
-            "options": {
-                "disable_gc": false,
-                "min_rounds": 5,
-                "max_time": 1.0,
-                "timer": "perf_counter",
-                "min_time": 5e-06,
-                "warmup": false
-            },
+            "param": null,
             "params": null,
-            "name": "test_R_GFA",
-            "extra_info": {},
-            "param": null
+            "stats": {
+                "iterations": 1,
+                "max": 389.1945854148362,
+                "min": 386.50431107194163,
+                "hd15iqr": 389.1945854148362,
+                "ops": 0.002580299622683437,
+                "iqr": 2.0177057571709156,
+                "outliers": "1;0",
+                "median": 386.95677870186046,
+                "stddev": 1.4404907659544546,
+                "total": 1162.6556751886383,
+                "rounds": 3,
+                "mean": 387.55189172954607,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "ld15iqr": 386.50431107194163,
+                "q3": 388.63513373659225,
+                "q1": 386.61742797942134
+            },
+            "name": "test_R_GFA"
         },
         {
-            "stats": {
-                "q1": 136.2255524250213,
-                "ops": 0.007335393081484608,
-                "stddev": 0.14112945042431838,
-                "min": 136.2255524250213,
-                "outliers": "0;0",
-                "iterations": 1,
-                "stddev_outliers": 0,
-                "iqr_outliers": 0,
-                "total": 272.65069203288294,
-                "rounds": 2,
-                "hd15iqr": 136.42513960786164,
-                "iqr": 0.1995871828403324,
-                "max": 136.42513960786164,
-                "q3": 136.42513960786164,
-                "median": 136.32534601644147,
-                "ld15iqr": 136.2255524250213,
-                "mean": 136.32534601644147
+            "options": {
+                "warmup": false,
+                "disable_gc": true,
+                "min_rounds": 1,
+                "timer": "perf_counter",
+                "max_time": 1.0,
+                "min_time": 5e-06
             },
+            "extra_info": {},
+            "group": null,
+            "fullname": "benchmarks.py::test_CP2K_MPI_testA",
+            "param": null,
+            "params": null,
+            "stats": {
+                "iterations": 1,
+                "max": 4849.270089213969,
+                "min": 4849.270089213969,
+                "hd15iqr": 4849.270089213969,
+                "ops": 0.0002062166020045488,
+                "iqr": 0.0,
+                "outliers": "0;0",
+                "median": 4849.270089213969,
+                "stddev": 0,
+                "total": 4849.270089213969,
+                "rounds": 1,
+                "mean": 4849.270089213969,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "ld15iqr": 4849.270089213969,
+                "q3": 4849.270089213969,
+                "q1": 4849.270089213969
+            },
+            "name": "test_CP2K_MPI_testA"
+        },
+        {
+            "options": {
+                "warmup": false,
+                "disable_gc": true,
+                "min_rounds": 1,
+                "timer": "perf_counter",
+                "max_time": 1.0,
+                "min_time": 5e-06
+            },
+            "extra_info": {},
+            "group": null,
             "fullname": "benchmarks.py::test_GROMACS_MPI_testA",
-            "group": null,
-            "options": {
-                "disable_gc": false,
-                "min_rounds": 5,
-                "max_time": 1.0,
-                "timer": "perf_counter",
-                "min_time": 5e-06,
-                "warmup": false
-            },
+            "param": null,
             "params": null,
-            "name": "test_GROMACS_MPI_testA",
-            "extra_info": {},
-            "param": null
-        },
-        {
             "stats": {
-                "q1": 141.4467750948388,
-                "ops": 0.006935294086350336,
-                "stddev": 3.879494790696582,
-                "min": 141.4467750948388,
-                "outliers": "0;0",
                 "iterations": 1,
-                "stddev_outliers": 0,
+                "max": 132.38374829804525,
+                "min": 112.81339333602227,
+                "hd15iqr": 132.38374829804525,
+                "ops": 0.008184883188263202,
+                "iqr": 6.363767318136524,
+                "outliers": "2;0",
+                "median": 121.90859426185489,
+                "stddev": 6.9645081832586655,
+                "total": 610.8822673449758,
+                "rounds": 5,
+                "mean": 122.17645346899516,
                 "iqr_outliers": 0,
-                "total": 288.3799843378365,
-                "rounds": 2,
-                "hd15iqr": 146.9332092429977,
-                "iqr": 5.486434148158878,
-                "max": 146.9332092429977,
-                "q3": 146.9332092429977,
-                "median": 144.18999216891825,
-                "ld15iqr": 141.4467750948388,
-                "mean": 144.18999216891825
+                "stddev_outliers": 2,
+                "ld15iqr": 112.81339333602227,
+                "q3": 125.24772565672174,
+                "q1": 118.88395833858522
             },
-            "fullname": "benchmarks.py::test_GROMACS_OpenMP_testA",
-            "group": null,
-            "options": {
-                "disable_gc": false,
-                "min_rounds": 5,
-                "max_time": 1.0,
-                "timer": "perf_counter",
-                "min_time": 5e-06,
-                "warmup": false
-            },
-            "params": null,
-            "name": "test_GROMACS_OpenMP_testA",
-            "extra_info": {},
-            "param": null
+            "name": "test_GROMACS_MPI_testA"
         }
     ],
+    "version": "3.1.1",
+    "datetime": "2018-01-23T00:28:19.077180",
     "commit_info": {
-        "branch": "(unknown)",
-        "time": null,
         "dirty": false,
-        "id": "unversioned",
+        "branch": "(unknown)",
         "project": "results",
-        "author_time": null
-    },
-    "version": "3.1.1"
+        "author_time": null,
+        "time": null,
+        "id": "unversioned"
+    }
 }
