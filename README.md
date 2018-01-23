@@ -66,4 +66,4 @@ This benchmark runs CP2K test A from PRACE's [Unified European Applications Benc
 
 All results are compared against a reference result run on a Dell PowerEdge C4130 machine with 2x14 core Xeon E5 2680 v4 2.40 GHz processors and 128 GB of DDR4-2400 memory.
 
-Results are stored in /results. There are also histograms in /results/histograms.
+Results are stored in /results as JSON files. There will also be output from running hardinfo, /proc/cpuinfo, GROMACS and CP2K. There are also histograms in /results/histograms.
