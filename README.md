@@ -2,7 +2,11 @@
 
 This repository contains instructions on how to build a benchmark docker image for FGCI node evaluation.
 
-## Usage
+## Before installation
+
+Please verify that the hyperthreading is disabled from BIOS and that the system has a kernel version new enough to protect against [Meltdown and Spectre](https://meltdownattack.com/).
+
+## Usage with Docker
 
 1. Install Docker on your system.
 2. Pull image from Docker Hub with  
@@ -18,11 +22,31 @@ This repository contains instructions on how to build a benchmark docker image f
     mkdir /tmp/results
     chmod a+w /tmp/results
     ```
-
 4. Now you can run the benchmarks with:
     ```sh
     sudo docker run --hostname $(hostname)-benchmark --mount type=bind,source=/tmp/results,target=/results -it aaltoscienceit/fgci-benchmark:latest
     ```
+
+    Estimated runtime of the benchmarks is around 2 hours.
+
+## Usage with Singularity
+
+1. Install [Singularity](http://singularity.lbl.gov/install-linux) on your system.
+2. Build image from Docker Hub with
+    ```sh
+    singularity build fgci-benchmark.simg docker://aaltoscienceit/fgci-benchmark:latest
+    ```
+3. After this you should create a folder that is writable to every user. This is where the results will be stored. For example:
+    ```sh
+    mkdir /tmp/results
+    chmod a+w /tmp/results
+    ```
+4. Now you can run the benchmarks with:
+    ```sh
+    singularity run -B /tmp/results:/results fgci-benchmark.simg
+    ```
+    
+    Estimated runtime of the benchmarks is around 2 hours.
 
 ## Included benchmarks
 
@@ -34,12 +58,12 @@ This benchmark uses the command `parallel` to fill every CPU on the computer wit
 
 This benchmark runs GROMACS test A from PRACE's [Unified European Applications Benchmark Suite](http://www.prace-ri.eu/ueabs/) using OpenMPI and all available cores.
 
-### GROMACS with OpenMP
+### CP2K with MPI
 
-This benchmark runs GROMACS test A from PRACE's [Unified European Applications Benchmark Suite](http://www.prace-ri.eu/ueabs/) using OpenMP and all available cores.
+This benchmark runs CP2K test A from PRACE's [Unified European Applications Benchmark Suite](http://www.prace-ri.eu/ueabs/) using OpenMPI and all available cores.
 
 ## Analyzing results
 
-All results are compared against a reference result run on a Dell PowerEdge C4130 machine with 2x12 core Xeon E5 2680 v3 2.50 GHz processors and 128 GB of DDR4-2133 memory.
+All results are compared against a reference result run on a Dell PowerEdge C4130 machine with 2x14 core Xeon E5 2680 v4 2.40 GHz processors and 128 GB of DDR4-2400 memory.
 
-Results are stored as json files in /results. There are also histograms in /results/histograms.
+Results are stored in /results. There are also histograms in /results/histograms.
