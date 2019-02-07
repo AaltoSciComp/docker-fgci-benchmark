@@ -8,10 +8,10 @@ if [[ "$#" -eq 0 ]] ; then
 
   # Download parameters and references, if they are not present
   if [ ! -e parameters.yml ] ; then 
-    wget https://raw.githubusercontent.com/AaltoScienceIT/docker-fgci-benchmark/master/benchmarks/parameters.yml
+    curl -OL https://raw.githubusercontent.com/AaltoScienceIT/docker-fgci-benchmark/master/benchmarks/parameters.yml
   fi
   if [ ! -e reference.json ] ; then 
-    wget https://raw.githubusercontent.com/AaltoScienceIT/docker-fgci-benchmark/master/benchmarks/reference.json 
+    curl -OL https://raw.githubusercontent.com/AaltoScienceIT/docker-fgci-benchmark/master/benchmarks/reference.json 
   fi
 
   # Run device diagnostics

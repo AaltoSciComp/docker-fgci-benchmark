@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
   libopenmpi-dev \
   fftw3 \
   cmake \
-  wget \
   curl \
   build-essential \
   && rm -rf /var/lib/apt/lists/*
@@ -23,7 +22,7 @@ RUN bash /tmp/install_scripts/install_gromacs.sh
 # Download GROMACS test data
 RUN mkdir /benchmarks/gromacs-datas && \
   cd /tmp && \
-  wget http://www.prace-ri.eu/UEABS/GROMACS/1.2/GROMACS_TestCaseA.tar.gz && \
+  curl -OL http://www.prace-ri.eu/UEABS/GROMACS/1.2/GROMACS_TestCaseA.tar.gz && \
   tar xzf GROMACS_TestCaseA.tar.gz && \
   cp ion_channel.tpr /benchmarks/gromacs-datas
   
@@ -70,7 +69,7 @@ RUN apt-get update && apt-get install -y \
 # Download CP2K test data
 RUN mkdir /benchmarks/cp2k-datas && \
   cd /benchmarks/cp2k-datas && \
-  wget -O /tmp/CP2K_TestCaseA.tar.gz http://www.prace-ri.eu/UEABS/CP2K/CP2K_TestCaseA.tar.gz && \
+  curl -L -o /tmp/CP2K_TestCaseA.tar.gz http://www.prace-ri.eu/UEABS/CP2K/CP2K_TestCaseA.tar.gz && \
   tar xzf /tmp/CP2K_TestCaseA.tar.gz && \
   rm /tmp/CP2K_TestCaseA.tar.gz
 

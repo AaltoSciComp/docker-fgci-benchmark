@@ -2,7 +2,7 @@
 
 # Obtain Gromacs ZIP
 cd /tmp &&
-wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-5.1.4.tar.gz
+curl -OL ftp://ftp.gromacs.org/pub/gromacs/gromacs-5.1.4.tar.gz
 
 # Install Gromacs with SSE2
 tar xzf gromacs-5.1.4.tar.gz && \
