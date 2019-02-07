@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
   openmpi-bin \
   libopenmpi-dev \
   fftw3 \
+  libopenblas-dev \
   cmake \
   curl \
   build-essential \
