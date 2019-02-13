@@ -1,5 +1,7 @@
-# Start from Debian image
-FROM debian:latest
+# Start from Ubuntu LTS image
+FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
+ENV OMP_NUM_THREADS=1
 
 # Install requirements for GROMACS benchmark
 RUN apt-get update && apt-get install -y \
@@ -12,6 +14,10 @@ RUN apt-get update && apt-get install -y \
   curl \
   build-essential \
   && rm -rf /var/lib/apt/lists/*
+
+
+# Create user benchmark with uid 444 (MPI is risky to run as root)
+RUN adduser --home /benchmarks --uid 444 --shell /bin/bash --disabled-password --gecos '' benchmark
 
 # Make install scripts folder
 RUN mkdir /tmp/install_scripts
@@ -81,6 +87,7 @@ RUN apt-get update && apt-get install -y \
   less \
   && rm -rf /var/lib/apt/lists/*
 
+
 # Copy benchmark scripts
 COPY benchmarks/benchmarks.py /benchmarks
 COPY benchmarks/R_GFA.R /benchmarks
@@ -90,11 +97,8 @@ RUN chmod +x /benchmarks/run_cp2k.sh
 # Set result folder
 RUN mkdir /results
 
-# chown /benchmarks and results for a new user with uid 1001
-RUN chown 1001:1001 /benchmarks /results
-
-# Create user benchmark with uid 1001 (MPI is risky to run as root)
-RUN adduser --home /benchmarks --uid 1001 --shell /bin/bash --disabled-password --gecos '' benchmark
+# chown /benchmarks and results for a new user with uid 444
+RUN chown 444:444 /benchmarks /results
 
 # Set default user and run location
 USER benchmark
