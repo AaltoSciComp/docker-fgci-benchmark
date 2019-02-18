@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
   openssh-client \
   openmpi-bin \
   libopenmpi-dev \
-  fftw3 \
   libopenblas-dev \
   cmake \
   curl \
@@ -62,16 +61,15 @@ RUN pip3 install -U \
 RUN apt-get update && apt-get install -y \
   git \
   python \
-  && rm -rf /var/lib/apt/lists/*
+  environment-modules \
+  tcl \
+  && rm -rf /var/lib/apt/lists/* \
+  && mkdir -p /etc/spack
 
 # Install CP2K
 COPY install_scripts/install_cp2k.sh /tmp/install_scripts
+COPY install_scripts/packages.yaml /etc/spack
 RUN bash /tmp/install_scripts/install_cp2k.sh
-
-# Install CP2K dependencies
-RUN apt-get update && apt-get install -y \
-  environment-modules \
-  && rm -rf /var/lib/apt/lists/*
 
 # Download CP2K test data
 RUN mkdir /benchmarks/cp2k-datas && \
