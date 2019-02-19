@@ -51,7 +51,12 @@ Please verify that the hyperthreading is disabled from BIOS and that the system 
     ```sh
     singularity run -B /tmp/results:/results fgci-benchmark.simg
     ```
-    
+
+    Note that if running via a batch scheduler such as slurm, contrary
+    to the usual recommendation in this case singularity should not be
+    run via the srun wrapper, as the container itself takes care of
+    launching MPI inside the container.
+
     Estimated runtime of the benchmarks is around 2 hours.
 
 ## Included benchmarks
