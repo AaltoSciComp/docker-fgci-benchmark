@@ -27,6 +27,12 @@ Please verify that the hyperthreading is disabled from BIOS and that the system 
     sudo docker run --hostname $(hostname)-benchmark --mount type=bind,source=/tmp/results,target=/results -it aaltoscienceit/fgci-benchmark:latest
     ```
 
+    Or with some sligthly different version of docker, the syntax for binding mountpoints is different:
+
+    ```sh
+    sudo docker run --hostname $(hostname)-benchmark -v /tmp/results:/results -it aaltoscienceit/fgci-benchmark:latest
+    ```
+
     Estimated runtime of the benchmarks is around 2 hours.
 
 ## Usage with Singularity
