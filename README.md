@@ -58,7 +58,12 @@ Please verify that the hyperthreading is disabled from BIOS and that the system 
 
 ### Multiple serial R jobs
 
-This benchmark uses the command `parallel` to fill every CPU on the computer with R processes that solve group factor analysis using a package called [GFA](https://cran.r-project.org/web/packages/GFA/index.html). In total 200 different jobs are run.
+This benchmark uses the command `parallel` to fill every CPU on the
+computer with R processes that solve group factor analysis using a
+package called
+[GFA](https://cran.r-project.org/web/packages/GFA/index.html). One job
+per core is run, and the total runtime is divided by the number of
+cores, thus giving a time/job throughput metric.
 
 ### GROMACS with MPI
 
@@ -73,3 +78,11 @@ This benchmark runs CP2K test A from PRACE's [Unified European Applications Benc
 All results are compared against a reference result run on a Dell PowerEdge C4130 machine with 2x14 core Xeon E5 2680 v4 2.40 GHz processors and 128 GB of DDR4-2400 memory.
 
 Results are stored in /results as JSON files. There will also be output from running hardinfo, /proc/cpuinfo, GROMACS and CP2K. There are also histograms in /results/histograms.
+
+
+To compute is single benchmark score for a node one can compute the
+geometric mean of the medians, e.g. with
+
+```sh
+jq '.benchmarks[].stats.median' /path/to/result_file.json | awk '{ b  = $1; C += log(b);  D++ } END { print "Geometric mean ", exp(C/D);}'
+```
