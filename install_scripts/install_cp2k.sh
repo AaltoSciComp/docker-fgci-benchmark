@@ -17,4 +17,6 @@ patch -p0 < spack.patch
 
 #export SPACK_TARGET_TYPE="x86_64_avx"
 
-spack install cp2k@6.1
+# Install openblas devel version, 0.3.5 AVX-512 kernels are b0rken
+# Unfortunately, so are 0.3.6dev AVX-512 kernels as of 2019-02-25.
+spack install cp2k@6.1 ^openblas@develop
