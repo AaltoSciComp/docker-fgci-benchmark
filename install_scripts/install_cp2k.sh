@@ -5,6 +5,7 @@ cd /benchmarks
 # Install Spack
 
 git clone https://github.com/spack/spack.git spack
+patch -p0 < spack.patch
 
 # Alternatively, a released version:
 #curl -OL https://github.com/spack/spack/releases/download/v0.12.1/spack-0.12.1.tar.gz

@@ -5,10 +5,10 @@ packages:
     paths:
       openmpi@2.1.1%gcc@7.3.0 arch=linux-ubuntu18.04-x86_64: /usr
     buildable: False
+# spack OpenBLAS package also needs patch to enable AVX2 & AVX-512
+# when building with +virtual_machine
   openblas:
-    paths:
-      openblas@0.2.20%gcc@7.3.0 arch=linux-ubuntu18.04-x86_64: /usr
-    buildable: False
+    variants: +virtual_machine
 # For spack head 2019-02-18 building cp2k with system fftw fails
 # https://github.com/spack/spack/issues/10602
 # https://github.com/spack/spack/pull/10623

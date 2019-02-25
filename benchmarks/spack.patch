@@ -1,0 +1,10 @@
+--- spack/var/spack/repos/builtin/packages/openblas/package.py.orig     2019-02-25 11:08:52.688005516 +0000
++++ spack/var/spack/repos/builtin/packages/openblas/package.py  2019-02-25 11:02:48.632538965 +0000
+@@ -147,7 +147,6 @@ class Openblas(MakefilePackage):
+         if self.spec.variants['virtual_machine'].value:
+             make_defs += [
+                 'DYNAMIC_ARCH=1',
+-                'NO_AVX2=1',
+                 'NUM_THREADS=64',  # OpenBLAS stores present no of CPUs as max
+             ]
+ 

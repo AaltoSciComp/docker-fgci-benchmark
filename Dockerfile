@@ -69,6 +69,7 @@ RUN apt-get update && apt-get install -y \
 # Install CP2K
 COPY install_scripts/install_cp2k.sh /tmp/install_scripts
 COPY install_scripts/packages.yaml /etc/spack
+COPY benchmarks/spack.patch /benchmarks
 RUN bash /tmp/install_scripts/install_cp2k.sh
 
 # Download CP2K test data
@@ -78,11 +79,12 @@ RUN mkdir /benchmarks/cp2k-datas && \
   tar xzf /tmp/CP2K_TestCaseA.tar.gz && \
   rm /tmp/CP2K_TestCaseA.tar.gz
 
-# Install hardinfo for HW information
+# Install hardinfo for HW information, update to latest packages
 RUN apt-get update && apt-get install -y \
   hardinfo \
   vim \
   less \
+  && apt-get -y dist-upgrade \
   && rm -rf /var/lib/apt/lists/*
 
 
