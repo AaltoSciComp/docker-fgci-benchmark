@@ -33,7 +33,8 @@ Please verify that the hyperthreading is disabled from BIOS and that the system 
     sudo docker run --hostname $(hostname)-benchmark -v /tmp/results:/results -it aaltoscienceit/fgci-benchmark:latest
     ```
 
-    Estimated runtime of the benchmarks is around 2 hours.
+    Estimated runtime of the benchmarks is around 2 hours. They
+    require at least 100 GB RAM.
 
 ## Usage with Singularity
 
@@ -57,7 +58,8 @@ Please verify that the hyperthreading is disabled from BIOS and that the system 
     run via the srun wrapper, as the container itself takes care of
     launching MPI inside the container.
 
-    Estimated runtime of the benchmarks is around 2 hours.
+    Estimated runtime of the benchmarks is around 2 hours. Run on a
+    machine with at least 100 GB RAM.
 
 ## Included benchmarks
 
