@@ -1,6 +1,46 @@
---- spack/var/spack/repos/builtin/packages/openblas/package.py.orig     2019-02-25 11:08:52.688005516 +0000
-+++ spack/var/spack/repos/builtin/packages/openblas/package.py  2019-02-25 11:02:48.632538965 +0000
-@@ -147,7 +147,6 @@ class Openblas(MakefilePackage):
+From 4e80b94ac31b78d55de3a28aecf6b3109fbb1634 Mon Sep 17 00:00:00 2001
+From: Janne Blomqvist <janne.blomqvist@aalto.fi>
+Date: Tue, 26 Feb 2019 14:09:21 +0200
+Subject: [PATCH] OpenBLAS: Allow enabling/disabling AVX2/512 support
+
+Allow specifying whether AVX2 or AVX512 should be enabled or disabled
+on x86 targets.
+
+As AVX2 hardware and toolchain support is quite ubiquitous by now,
+AVX2 is enabled by default.  Also AVX2 support is not disabled when
+building the +virtual_machine variant.
+
+AVX512 is not supported in older but still supported toolchains,
+hardware is still expensive, and OpenBLAS AVX512 kernels still have
+bugs. Thus AVX512 is disabled by default.
+---
+ .../builtin/packages/openblas/package.py      | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+
+diff --git a/var/spack/repos/builtin/packages/openblas/package.py b/var/spack/repos/builtin/packages/openblas/package.py
+index 0db74ca39aa..a745d9213e2 100644
+--- a/var/spack/repos/builtin/packages/openblas/package.py
++++ b/var/spack/repos/builtin/packages/openblas/package.py
+@@ -56,6 +56,18 @@ class Openblas(MakefilePackage):
+         description="Adding options to build openblas on Linux virtual machine"
+     )
+ 
++    variant(
++        'avx2',
++        default=True,
++        description='Enable use of AVX2 instructions'
++    )
++
++    variant(
++        'avx512',
++        default=False,
++        description='Enable use of AVX512 instructions'
++    )
++
+     # virtual dependency
+     provides('blas')
+     provides('lapack')
+@@ -147,7 +159,6 @@ def make_defs(self):
          if self.spec.variants['virtual_machine'].value:
              make_defs += [
                  'DYNAMIC_ARCH=1',
@@ -8,3 +48,16 @@
                  'NUM_THREADS=64',  # OpenBLAS stores present no of CPUs as max
              ]
  
+@@ -186,6 +197,12 @@ def make_defs(self):
+         if '+ilp64' in self.spec:
+             make_defs += ['INTERFACE64=1']
+ 
++        if 'x86' in spack.architecture.sys_type():
++            if '~avx2' in self.spec:
++                make_defs += ['NO_AVX2=1']
++            if '~avx512' in self.spec:
++                make_defs += ['NO_AVX512=1']
++
+         return make_defs
+ 
+     @property
