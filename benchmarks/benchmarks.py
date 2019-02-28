@@ -16,6 +16,8 @@ cpu_info    = cpuinfo.get_cpu_info()
 cpu_flags   = cpu_info['flags']
 if 'avx512f' in cpu_flags:
     gromacs_version = 'AVX_512'
+elif 'avx2' in cpu_flags:
+    gromacs_version = 'AVX2_256'
 elif 'avx' in cpu_flags:
     gromacs_version = 'AVX_256'
 elif 'sse4.1' in cpu_flags:

@@ -95,6 +95,34 @@ cd /tmp && \
 rm -rf ${GMXVER}
 
 
+# Install Gromacs with 256-bit AVX2
+tar xzf ${GMXVER}.tar.gz && \
+cd ${GMXVER} && \
+mkdir build && \
+cd build && \
+cmake \
+        -DCMAKE_INSTALL_PREFIX=/benchmarks/gromacs-AVX2_256/ \
+        -DBUILD_SHARED_LIBS=off \
+        -DBUILD_TESTING=off \
+        -DREGRESSIONTEST_DOWNLOAD=OFF \
+        -DCMAKE_C_COMPILER=`which mpicc` \
+        -DCMAKE_CXX_COMPILER=`which mpicxx` \
+        -DGMX_BUILD_OWN_FFTW=on \
+        -DGMX_SIMD=AVX2_256 \
+        -DGMX_DOUBLE=off \
+        -DGMX_FFT_LIBRARY=fftw3 \
+        -DGMX_GPU=off \
+        -DGMX_MPI=on \
+        -DGMX_OPENMP=on \
+        -DGMX_X11=off \
+        .. && \
+make -j ${NPROC} && \
+make install
+
+# Clean up build directory
+cd /tmp && \
+rm -rf ${GMXVER}
+
 # Install Gromacs with AVX512
 tar xzf ${GMXVER}.tar.gz && \
 cd ${GMXVER} && \
