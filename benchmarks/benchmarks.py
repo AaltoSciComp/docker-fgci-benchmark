@@ -20,10 +20,9 @@ elif 'avx2' in cpu_flags:
     gromacs_version = 'AVX2_256'
 elif 'avx' in cpu_flags:
     gromacs_version = 'AVX_256'
-elif 'sse4.1' in cpu_flags:
-    gromacs_version = 'SSE4.1'
 else:
-    gromacs_version = 'SSE2'
+    gromacs_version = 'SSE4.1'
+
 
 def mytimer():
     """Timer function used to calculate seconds/job metric for the R
