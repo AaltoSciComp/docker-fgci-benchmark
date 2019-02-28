@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GMXVER="gromacs-2019"
+GMXVER="gromacs-2019.1"
 # Obtain Gromacs ZIP
 cd /tmp &&
 curl -OL http://ftp.gromacs.org/pub/gromacs/${GMXVER}.tar.gz
