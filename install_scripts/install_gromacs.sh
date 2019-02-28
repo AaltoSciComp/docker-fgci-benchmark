@@ -25,8 +25,6 @@ cmake \
         -DGMX_BUILD_OWN_FFTW=on \
         -DGMX_SIMD=SSE2 \
         -DGMX_DOUBLE=off \
-        -DGMX_EXTERNAL_BLAS=off \
-        -DGMX_EXTERNAL_LAPACK=off \
         -DGMX_FFT_LIBRARY=fftw3 \
         -DGMX_GPU=off \
         -DGMX_MPI=on \
@@ -55,8 +53,6 @@ cmake \
         -DGMX_BUILD_OWN_FFTW=on \
         -DGMX_SIMD=SSE4.1 \
         -DGMX_DOUBLE=off \
-        -DGMX_EXTERNAL_BLAS=off \
-        -DGMX_EXTERNAL_LAPACK=off \
         -DGMX_FFT_LIBRARY=fftw3 \
         -DGMX_GPU=off \
         -DGMX_MPI=on \
@@ -85,8 +81,6 @@ cmake \
         -DGMX_BUILD_OWN_FFTW=on \
         -DGMX_SIMD=AVX_256 \
         -DGMX_DOUBLE=off \
-        -DGMX_EXTERNAL_BLAS=off \
-        -DGMX_EXTERNAL_LAPACK=off \
         -DGMX_FFT_LIBRARY=fftw3 \
         -DGMX_GPU=off \
         -DGMX_MPI=on \
@@ -116,8 +110,6 @@ cmake \
         -DGMX_BUILD_OWN_FFTW=on \
         -DGMX_SIMD=AVX_512 \
         -DGMX_DOUBLE=off \
-        -DGMX_EXTERNAL_BLAS=off \
-        -DGMX_EXTERNAL_LAPACK=off \
         -DGMX_FFT_LIBRARY=fftw3 \
         -DGMX_GPU=off \
         -DGMX_MPI=on \
