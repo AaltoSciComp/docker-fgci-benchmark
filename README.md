@@ -61,6 +61,17 @@ Please verify that the hyperthreading is disabled from BIOS and that the system 
     Estimated runtime of the benchmarks is around 2 hours. Run on a
     machine with at least 100 GB RAM.
 
+### Running in systems with HyperThreading enabled
+
+When running in systems with HyperThreading enabled the script might obtain
+wrong number of cpus. The number of cpus used in the test can be overwritten
+by downloading the `parameters.yml` and modifying it.
+
+```sh
+wget https://raw.githubusercontent.com/AaltoScienceIT/docker-fgci-benchmark/master/benchmarks/parameters.yml -O /tmp/parameters.yml
+echo 'ncpus: 20' >> /tmp/parameters.yml
+```
+
 ## Included benchmarks
 
 ### Multiple serial R jobs

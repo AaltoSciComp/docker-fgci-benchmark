@@ -41,7 +41,7 @@ def run_CP2K_MPI_testA():
 
 def run_GROMACS_MPI_testA():
     nsteps = parameters['GROMACS_MPI_testA']['nsteps']
-    cmd = 'OMP_NUM_THREADS={0} mpirun -np {1} /benchmarks/gromacs-{2}/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {3} -g /results/gromacs-mpi-testA.log -e /results/gromacs-mpi-testA.edr'.format(1,int(ncpus),gromacs_version,nsteps)
+    cmd = 'OMP_NUM_THREADS={0} mpirun --oversubscribe -np {1} /benchmarks/gromacs-{2}/bin/gmx_mpi mdrun -s /benchmarks/gromacs-datas/ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps {3} -g /results/gromacs-mpi-testA.log -e /results/gromacs-mpi-testA.edr'.format(1,int(ncpus),gromacs_version,nsteps)
     return subprocess.call([cmd],shell=True)
 
 @pytest.mark.benchmark(
